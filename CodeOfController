@@ -1,0 +1,83 @@
+// Arduino Line Follower Robot Code
+// Uses 2 IR sensors (left and right) and L298N motor driver
+
+// Motor pins
+int ENA = 9;   // Enable pin for Left motor
+int ENB = 10;  // Enable pin for Right motor
+int IN1 = 2;   // Left motor forward
+int IN2 = 3;   // Left motor backward
+int IN3 = 4;   // Right motor forward
+int IN4 = 5;   // Right motor backward
+
+// Sensor pins
+int leftSensor = 7;   // Left IR sensor
+int rightSensor = 8;  // Right IR sensor
+
+void setup() {
+  pinMode(ENA, OUTPUT);
+  pinMode(ENB, OUTPUT);
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  pinMode(IN3, OUTPUT);
+  pinMode(IN4, OUTPUT);
+  
+  pinMode(leftSensor, INPUT);
+  pinMode(rightSensor, INPUT);
+}
+
+void loop() {
+  int left = digitalRead(leftSensor);
+  int right = digitalRead(rightSensor);
+
+  if (left == LOW && right == LOW) {
+    // Move forward
+    forward();
+  } 
+  else if (left == HIGH && right == LOW) {
+    // Turn left
+    turnLeft();
+  } 
+  else if (left == LOW && right == HIGH) {
+    // Turn right
+    turnRight();
+  } 
+  else {
+    // Stop if no line detected
+    stopMotors();
+  }
+}
+
+// Functions
+void forward() {
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+  analogWrite(ENA, 150);
+  analogWrite(ENB, 150);
+}
+
+void turnLeft() {
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+  analogWrite(ENA, 0);
+  analogWrite(ENB, 150);
+}
+
+void turnRight() {
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, LOW);
+  analogWrite(ENA, 150);
+  analogWrite(ENB, 0);
+}
+
+void stopMotors() {
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, LOW);
+}
