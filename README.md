@@ -6,20 +6,34 @@ An Arduino Line Follower Robot is an autonomous vehicle that uses IR sensors to 
   *[Ardino-line-controller-robot-](#Components)
 1. Motors
 Attributes:
+
 normal_speed: Normal speed of the motors.
+
+
 min_speed: Minimum allowable speed.
+
 max_speed: Maximum allowable speed.
+
 Pins for left and right motor control (left_in1, left_in2, left_en, right_in1, right_in2, right_en).
+
 Methods:
+
 initialize(): Sets up the motor control pins.
+
 set_motor(int in1, int in2, int en, int speed): Controls individual motors.
+
+
 get_direction(int speed): Determines motor direction.
+
 normalize_speed(int speed): Ensures speed stays within defined limits.
+
 drive(int speed_difference, bool debug): Drives the robot with a speed difference between left and right motors.
 
 
 2. PID (Proportional-Integral-Derivative) Controller
+
 Attributes:
+
 KP: Proportional gain.
 KI: Integral gain.
 KD: Derivative gain.
