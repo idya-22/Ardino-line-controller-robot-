@@ -3,7 +3,7 @@ An Arduino Line Follower Robot is an autonomous vehicle that uses IR sensors to 
 
 
 
-  *[**Ardino-line-controller-robot-**](#Components)
+  * <a href=#Components" style="text-decoration:none; color:black; font-weight:bold;"> Ardino-line-controller-robot-</a>
 1. Motors
 Attributes:
 
